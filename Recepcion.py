@@ -1,4 +1,6 @@
 from collections import deque
+from traceback import print_exception
+
 
 class Paciente:
     def __init__(self, nombre, motivo_consulta):
@@ -25,6 +27,23 @@ while opcion != "4":
                 registrar_paciente = Paciente(nombre, motivo)
                 pacientes_espera.append(registrar_paciente)
                 print("Paciente registrado con éxito")
-
+            case "2":
+                if pacientes_espera:
+                    print(f"El siguiente en ser atendido es {pacientes_espera[0]}")
+                    input("Precione ENTER para continuar")
+                    print(f"{pacientes_espera.popleft().nombre} Ha sido atendido")
+                else:
+                    print("No hay pacientes registrados")
+            case "3":
+                if pacientes_espera:
+                    print("Pacientes en espera:")
+                    for i in pacientes_espera:
+                        i.ver_paciente()
+                else:
+                    print("No hay pacientes registrados")
+            case "4":
+                print("Tenga buen día, hasta pronto!")
+            case __:
+                print(f"La opción {opcion} no está disponible")
     except ValueError:
         print("ERROR: Dato ingresado no válido")
